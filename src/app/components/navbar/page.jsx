@@ -1,22 +1,45 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
+  const [navHeader, setnavHeader] = useState(false);
 
+  const scrollHeader = () => {
+    if (window.innerWidth >= 768) {
+      if (window.scrollY >= 20) {
+        setnavHeader(true);
+      } else {
+        setnavHeader(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollHeader);
+    return () => {
+      window.removeEventListener("scroll", scrollHeader);
+    };
+  });
   const handleMenu = () => {
     setMenu(!menu);
   };
   return (
     <div>
-      <nav className="fixed w-full h-19 shadow-sm backdrop-blur-sm bg-white-50">
+      <nav
+        className={
+          navHeader
+            ? "top-0 fixed w-full bg-white shadow-md"
+            : "w-full bg-white fixed"
+        }
+      >
         <div className="flex justify-between mt-4 mb-4 item-center h-full w-full px-4 2xl:px-16">
           <Link href="/" className="lg:ml-10 sm:ml-0 md:ml-0">
-            <span className="text-3xl text-slate-950">MOREOVER</span>
+            <span className="text-3xl text-slate-950">MORE/OVER</span>
           </Link>
           <div>
             <ul className=" mt-2 hidden lg:flex sm:hidden md:hidden">
-              <Link href="/" className="">
+              <Link href="/">
                 <li className="uppercase hover:border-b hover:text-slate-950 text-md text-slate-800 font-bold">
                   Home
                 </li>
@@ -88,14 +111,14 @@ const Navbar = () => {
         <div
           className={
             menu
-              ? "fixed right-0 sm:hidden md:hidden h-screen w-screen bg-white-50 p-5 ease-in duration-200"
+              ? "fixed right-0 h-screen w-screen bg-white p-5 ease-in duration-200"
               : "fixed right-[-100%] p-5 h-screen ease-out duration-500"
           }
         >
           <div className="flex-col">
             <ul>
               <Link href="/" onClick={() => setMenu(false)}>
-                <li className="py-4 uppercase text-md hover:text-slate-950 text-md text-slate-800 font-bold">
+                <li className="mb-4 uppercase text-md hover:text-slate-950 text-md text-slate-800 font-bold">
                   Home
                 </li>
               </Link>
