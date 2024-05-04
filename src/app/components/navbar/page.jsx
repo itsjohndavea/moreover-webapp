@@ -20,7 +20,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", scrollHeader);
     };
-  });
+  }, []);
   const handleMenu = () => {
     setMenu(!menu);
   };
@@ -29,8 +29,8 @@ const Navbar = () => {
       <nav
         className={
           navHeader
-            ? "top-0 fixed w-full bg-white shadow-md"
-            : "w-full bg-white fixed"
+            ? "top-0 fixed w-full bg-white shadow-md z-50"
+            : "w-full bg-white fixed z-10"
         }
       >
         <div className="flex justify-between mt-4 mb-4 item-center h-full w-full px-4 2xl:px-16">
