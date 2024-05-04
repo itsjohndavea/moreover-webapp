@@ -3,9 +3,9 @@ import React from "react";
 const Footer = () => {
   const date = new Date();
   return (
-    <footer className=" bg-slate-900">
+    <footer className=" bg-slate-900 bottom-0 w-full">
       <div
-        className="max-w-screen-xl bottom-0 px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6
+        className="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6
       lg:px-8"
       >
         <nav className="flex flex-wrap justify-center -mx-5 -my-2">
